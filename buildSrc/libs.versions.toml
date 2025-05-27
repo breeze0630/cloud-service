@@ -1,16 +1,22 @@
 [versions]
 alibaba-cloud-version = "2023.0.3.2"
 spring-cloud-version = "4.2.2"
-
+boot-version = "3.4.3"
 lombox-version = "1.18.20"
+fastjson-version = "1.2.83"
+knife-version = "3.0.3"
 
 [libraries]
 spring_cloud = { group = "com.alibaba.cloud", name = "spring-cloud-alibaba-dependencies", version.ref = "alibaba-cloud-version" }
 lombox = { group = "org.projectlombok", name = "lombok", version.ref = "lombox-version" }
 nacos_config = { group = "com.alibaba.cloud", name = "spring-alibaba-nacos-config", version.ref = "alibaba-cloud-version" }
 nacos_discovery = { group = "com.alibaba.cloud", name = "spring-cloud-starter-alibaba-nacos-discovery", version.ref = "alibaba-cloud-version" }
-
 gateway = { group = "org.springframework.cloud", name = "spring-cloud-starter-gateway", version.ref = "spring-cloud-version" }
+elasticsearch = { group = "org.springframework.boot", name = "spring-boot-starter-data-elasticsearch", version.ref = "boot-version" }
+fastjson = { group = "com.alibaba", name = "fastjson", version.ref = "fastjson-version" }
+knife = { group = "com.github.xiaoymin", name = "knife4j-spring-boot-starter", version.ref = "knife-version" }
+
 
 [bundles]
 spring_cloud_dep = ["spring_cloud","nacos_config","nacos_discovery","gateway"]
+base_dep = ["lombox","fastjson","knife"]

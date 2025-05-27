@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.cloud.elasticsearch'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    constraints {
+        implementation('org.elasticsearch.client:elasticsearch-rest-client:8.17.0')
+        implementation("co.elastic.clients:elasticsearch-java:8.17.0")
+    }
+
+    //需要引入spring cloud相关依赖
+    implementation(libs.bundles.spring.cloud.dep)
+    implementation(libs.bundles.base.dep)
+    compileOnly(libs.lombox)
+    annotationProcessor(libs.lombox)
+    implementation(libs.elasticsearch)
+}
+

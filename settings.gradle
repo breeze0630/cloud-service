@@ -1,5 +1,4 @@
 rootProject.name = 'cloud-service'
-include 'cloud-gateway'
 
 
 
@@ -13,3 +12,5 @@ dependencyResolutionManagement {
         }
     }
 }
+
+include 'cloud-gateway', 'cloud-elasticsearch'
