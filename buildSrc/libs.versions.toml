@@ -1,0 +1,16 @@
+[versions]
+alibaba-cloud-version = "2023.0.3.2"
+spring-cloud-version = "4.2.2"
+
+lombox-version = "1.18.20"
+
+[libraries]
+spring_cloud = { group = "com.alibaba.cloud", name = "spring-cloud-alibaba-dependencies", version.ref = "alibaba-cloud-version" }
+lombox = { group = "org.projectlombok", name = "lombok", version.ref = "lombox-version" }
+nacos_config = { group = "com.alibaba.cloud", name = "spring-alibaba-nacos-config", version.ref = "alibaba-cloud-version" }
+nacos_discovery = { group = "com.alibaba.cloud", name = "spring-cloud-starter-alibaba-nacos-discovery", version.ref = "alibaba-cloud-version" }
+
+gateway = { group = "org.springframework.cloud", name = "spring-cloud-starter-gateway", version.ref = "spring-cloud-version" }
+
+[bundles]
+spring_cloud_dep = ["spring_cloud","nacos_config","nacos_discovery","gateway"]

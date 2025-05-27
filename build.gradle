@@ -1,0 +1,42 @@
+
+plugins {
+    id 'java'               // 应用 Java 插件
+    id 'application'        // 可选：如果是可执行应用
+//    id 'com.gradle.plugin.version-catalog' version '1.0.0'
+
+}
+
+group='com.cloud.service'         // 项目组 ID
+version= '1.0.0'           // 项目版本
+
+
+// 添加 Maven Central 等仓库
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 编译时依赖（主代码）
+//    apply from: 'buildSrc/gradle/libs.versions.toml'
+
+//    implementation 'com.alibaba.cloud:spring-cloud-alibaba-dependencies:2023.0.3.2'
+
+    implementation(libs.spring.cloud)
+    //    implementation(libs.lombox)
+
+    // 编译时需要但不打包到最终产物的依赖
+    //    compileOnly 'org.projectlombok:lombok:1.18.24'
+    compileOnly(libs.lombox)
+
+
+    // 注解处理器（如 Lombok）
+//    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor(libs.lombox)
+}
+// 声明依赖
+
+
+
+
+
+

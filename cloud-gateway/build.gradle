@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'com.cloud.plugin.java-project'
+}
+
+group = 'com.cloud.gateway'
+version = '1.0.0'
+
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()      // Gradle 插件仓库
+
+}
+
+dependencies {
+
+    //需要引入spring cloud相关依赖
+    implementation(libs.bundles.spring.cloud.dep)
+    compileOnly(libs.lombox)
+    annotationProcessor(libs.lombox)
+}

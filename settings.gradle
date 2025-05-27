@@ -1,0 +1,15 @@
+rootProject.name = 'cloud-service'
+include 'cloud-gateway'
+
+
+
+dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+    // 第二种方式使用版本目录
+    versionCatalogs {
+        libs {
+            from(files("./buildSrc/libs.versions.toml"))
+        }
+    }
+}

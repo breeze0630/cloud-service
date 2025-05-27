@@ -1,0 +1,55 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+          server-addr: 127.0.0.1:18848
+    gateway:
+      routes:
+        # 路由到用户服务
+        - id: user-service
+          uri: lb://user-service  # 使用服务发现的负载均衡
+          predicates:
+            - Path=/api/users/**  # 匹配路径
+          filters:
+            - StripPrefix=1  # 移除路径前缀
+#            - AddRequestHeader=X-Request-Source, Gateway  # 添加请求头
+#            - RequestRateLimiter=  # 请求限流
+#                key-resolver: '#{@userKeyResolver}'  # 使用SpEL表达式引用Bean
+#                redis-rate-limiter.replenishRate: 10  # 每秒允许处理的请求数
+#                redis-rate-limiter.burstCapacity: 20  # 令牌桶容量
+
+        # 路由到订单服务
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/orders/**
+            - Method=GET,POST  # 限制HTTP方法
+          filters:
+            - StripPrefix=1
+#            - CircuitBreaker=  # 断路器配置
+#              name: orderCircuitBreaker
+#              fallbackUri: forward:/order-fallback  # 熔断时的回调路径
+
+        # 路由到静态资源
+#        - id: static-resources
+#          uri: file:///path/to/static/files
+#          predicates:
+#            - Path=/static/**
+#          filters:
+#            - StripPrefix=10
+
+      # 全局过滤器配置
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_FIRST  # 处理跨域头
+        - AddResponseHeader=X-Response-From, Gateway  # 添加响应头
+
+      # CORS配置
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"  # 注意：生产环境应限制特定域名
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+  application:
+    name: cloud-gateway

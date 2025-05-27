@@ -1,0 +1,15 @@
+// buildSrc/build.gradle
+plugins {
+    id 'groovy-gradle-plugin'  // 支持 Groovy 编写插件
+
+}
+
+repositories {
+    gradlePluginPortal()      // Gradle 插件仓库
+    mavenCentral()            // Maven 中央仓库
+}
+
+dependencies {
+    implementation gradleApi()  // 包含 org.gradle.api.*
+    implementation localGroovy() // 包含 Groovy API
+}
